@@ -163,6 +163,8 @@ class TestUrbanRoutes:
         routes_page.set_from(address_from)
         routes_page.set_to(address_to)
         routes_page.click_request_taxi()
+        assert routes_page.wait.until(EC.visibility_of_element_located(routes_page.comfort_type)) #CORRECCION
+
 
     def test_click_comfort_type(self):
         self.driver.get(data.urban_routes_url)
@@ -173,6 +175,9 @@ class TestUrbanRoutes:
         routes_page.set_to(address_to)
         routes_page.click_request_taxi()
         routes_page.click_comfort_type()
+        assert routes_page.wait.until(EC.visibility_of_element_located(routes_page.phone_number)) #CORRECCION
+
+
 
 #Test 3
     def test_click_phone_number(self):
@@ -194,6 +199,7 @@ class TestUrbanRoutes:
         code_field.send_keys(confirmation_code)
         confirm_button = routes_page.wait.until(EC.element_to_be_clickable(routes_page.confirm_button))
         confirm_button.click()
+        assert routes_page.wait.until(EC.visibility_of_element_located(routes_page.payment_method)) #CORRECCION
 
 #Test 4
     def test_payment_method(self):
@@ -216,6 +222,9 @@ class TestUrbanRoutes:
         confirm_button = routes_page.wait.until(EC.element_to_be_clickable(routes_page.confirm_button))
         confirm_button.click()
         routes_page.add_payment_method()
+        assert routes_page.driver.find_element(*routes_page.x_button).is_displayed(), "El botón X no se muestra" #CORRECCION
+
+
 
 #Test 5
     def test_driver_message(self):
@@ -239,8 +248,10 @@ class TestUrbanRoutes:
         confirm_button.click()
         routes_page.add_payment_method()
         routes_page.add_driver_message()
+        payment_method_button = routes_page.driver.find_element(*routes_page.payment_method)
+        assert payment_method_button.is_displayed(), "El botón de método de pago no es visible" #CORRECCION
 
-#Test 6
+    #Test 6
     def test_blanket_tishue(self):
         self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
@@ -263,6 +274,9 @@ class TestUrbanRoutes:
         routes_page.add_payment_method()
         routes_page.add_driver_message()
         routes_page.add_blanket_tishue()
+        switch = routes_page.driver.find_element(*routes_page.blanket_tishue)
+        assert 'slider round' in switch.get_attribute('class') #CORRECCION
+
 
 #Test 7
     def test_icecreams(self):
@@ -288,6 +302,9 @@ class TestUrbanRoutes:
         routes_page.add_driver_message()
         routes_page.add_blanket_tishue()
         routes_page.add_icecreams()
+        contador = routes_page.driver.find_element(By.CLASS_NAME, 'counter-value')
+        assert contador.text == '2' #CORRECCION
+
 
 #Test 8
     def test_request_vehicle(self):
@@ -314,7 +331,8 @@ class TestUrbanRoutes:
         routes_page.add_blanket_tishue()
         routes_page.add_icecreams()
         routes_page.click_request_vehicle()
-
+        searching = self.driver.find_element(By.CSS_SELECTOR, 'div.order.shown')
+        assert searching.is_displayed(), "El mensaje de confirmacion de vehiculo  no es visible." #CORRECCION
     @classmethod
     def teardown_class(cls):
         cls.driver.quit()

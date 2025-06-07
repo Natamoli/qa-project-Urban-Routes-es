@@ -15,3 +15,8 @@ Descripción de las tecnologías y técnicas utilizadas:
 - Esperas explícitas con WebDriverWait y ExpectedConditions 
 - Page Object Model (POM) para mantener el código ordenado 
 - PyCharm como editor
+
+
+Ejecución:
+
+Desde la terminal se utiliza el comando pytest test_urban_routes.py -s para navegar en la carpeta raiz
