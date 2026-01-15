@@ -1,22 +1,26 @@
-Sprint 8, Automatizacion Urban Routes
+Sprint 8: Urban Routes Automation
+Natalia Molina | Cohort 28
 
-Natalia Molina, cohort 28
+📝 Project Description
+This project focuses on the automated end-to-end (E2E) testing of the Urban Routes platform, specifically simulating the taxi-booking workflow. The automation script replicates a real user journey, covering critical business logic and UI interactions:
 
-Descripción del proyecto:
+- Setting pickup and destination addresses.
+- Selecting various vehicle categories (service levels).
+- Phone number entry and verification.
+- Payment method integration (card addition and validation).
+- Customizing trip requirements (requesting blankets, tissues, or adding driver notes).
+- Completing the final booking request.
 
-Este proyecto de automatizacion de pruebas para la plataforma urban routes, enfocado en el proceso de pedir un taxi en la plataforma. Simula los pasos que haría un usuario real como: poner direcciones, elegir tipo de carro, ingresar su número, ingresar método de pago y pedir cosas extra como cobijas o pañuelo.
+🛠️ Tech Stack & Methodology
+- Language: Python
+- Automation Engine: Selenium WebDriver
+- Test Framework: PyTest (for test suite organization and execution)
+- Design Pattern: Page Object Model (POM) — implemented to ensure code reusability, modularity, and easy maintenance.
+- Synchronization: Explicit Waits (WebDriverWait and expected_conditions) to handle asynchronous web elements and ensure test stability.
+- IDE: PyCharm
 
+🚀 Execution
+To run the test suite, navigate to the root directory and execute the following command in your terminal:
 
-Descripción de las tecnologías y técnicas utilizadas:
-
-- Lenguaje Python 
-- Selenium WebDriver para automatizar el navegador 
-- PyTest para organizar y correr las pruebas 
-- Esperas explícitas con WebDriverWait y ExpectedConditions 
-- Page Object Model (POM) para mantener el código ordenado 
-- PyCharm como editor
-
-
-Ejecución:
-
-Desde la terminal se utiliza el comando pytest test_urban_routes.py -s para navegar en la carpeta raiz
+Bash
+pytest test_urban_routes.py -v
